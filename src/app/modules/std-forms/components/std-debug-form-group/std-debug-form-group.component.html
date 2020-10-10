@@ -1,6 +1,6 @@
 <div class="json">
   <div>
-    values:<pre>{{ formGroup.value | json }}</pre>
+    values:<pre>{{ formControl.value | json }}</pre>
   </div>
   <div>
     errors:<pre>{{ errors | json }}</pre>
@@ -8,8 +8,8 @@
 </div>
 <hr class="divider" />
 <div class="stats">
-  <span>valid: {{ formGroup.valid }}</span>
-  <span>touched: {{ formGroup.touched }}</span>
-  <span>pristine: {{ formGroup.pristine }}</span>
-  <span>status: {{ formGroup.status }}</span>
+  <span>valid: {{ formControl.valid }}</span>
+  <span>touched: {{ formControl.touched }}</span>
+  <span>pristine: {{ formControl.pristine }}</span>
+  <span>status: {{ formControl.status }}</span>
 </div>

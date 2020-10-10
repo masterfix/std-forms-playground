@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { AbstractControl, FormControl, FormArray, FormGroup } from '@angular/forms';
+import { Component } from '@angular/core';
+import { AbstractControl, FormControl, FormArray, FormGroup, NgControl, ControlContainer } from '@angular/forms';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -9,13 +9,17 @@ import { AbstractControl, FormControl, FormArray, FormGroup } from '@angular/for
 })
 export class StdDebugFormGroupComponent {
 
-  @Input('outerFormGroup') formGroup: FormGroup;
+  constructor(private controlContainer: ControlContainer) {}
 
-  get errors(): any {
-    return this.getErrorsFromControl(this.formGroup);
+  get formControl(): AbstractControl {
+    return this.controlContainer.control;
   }
 
-  private getErrorsFromControl(control: AbstractControl, name?: string): any {
+  get errors(): any {
+    return this.getErrorsFromControl(this.formControl);
+  }
+
+  private getErrorsFromControl(control: AbstractControl): any {
     
     if (control instanceof FormControl) {
       //console.log(control.errors);
@@ -28,7 +32,7 @@ export class StdDebugFormGroupComponent {
       const errors = {};
       Object.keys(control.controls).forEach(key => {
         const childControl = control.controls[key];
-        const childErrors = this.getErrorsFromControl(childControl, key);
+        const childErrors = this.getErrorsFromControl(childControl);
         if (childErrors) {
           errors[key] = childErrors;
         }

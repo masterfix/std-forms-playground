@@ -1,5 +1,4 @@
 import { Component, Input } from "@angular/core";
-import { FormGroup } from "@angular/forms";
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -9,7 +8,6 @@ import { FormGroup } from "@angular/forms";
 })
 export class StdFormComponent {
   
-  @Input() formGroup: FormGroup;
   @Input() debug = false;
 
 }

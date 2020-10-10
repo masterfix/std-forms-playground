@@ -1,4 +1,6 @@
-<std-form [formGroup]="form" [debug]="true">
+<std-form
+  [formGroup]="form"
+  [debug]="true">
 	<std-input
     [formControl]="firstName"
     label="First name">
@@ -15,9 +17,18 @@
   <std-radiobutton-group
     [formControl]="gender"
     label="Gender">
-    <ng-template std-radiobutton="male">Male</ng-template>
-    <ng-template std-radiobutton="female">Female</ng-template>
-    <ng-template std-radiobutton="other">Other</ng-template>
+    <ng-template
+      std-radiobutton="male">
+      Male
+    </ng-template>
+    <ng-template
+      std-radiobutton="female">
+      Female
+    </ng-template>
+    <ng-template
+      std-radiobutton="other">
+      Other
+    </ng-template>
   </std-radiobutton-group>
 	<std-input
     [formControl]="email"
