@@ -10,7 +10,6 @@ import { StdRadiobuttonGroupComponent } from './components/std-radiobutton-group
 import { StdDebugFormControlComponent } from './components/std-debug-form-control/std-debug-form-control.component';
 import { StdRadiobuttonDirective } from './directives/std-radiobutton/std-radiobutton.directive';
 import { StdDebugFormGroupComponent } from './components/std-debug-form-group/std-debug-form-group.component';
-import { StdInput2Component } from './components/std-input2/std-input2.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +20,6 @@ import { StdInput2Component } from './components/std-input2/std-input2.component
     StdDebugFormGroupComponent,
     StdLabelComponent,
     StdInputComponent,
-    StdInput2Component,
     StdRadiobuttonGroupComponent,
     StdRadiobuttonDirective,
   ],

@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, ContentChildren,  forwardRef, Host, Input, Optional, QueryList, SkipSelf } from '@angular/core';
-import { ControlContainer, ControlValueAccessor, FormControl,  NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AfterViewInit, Component, ContentChildren, Host, Input, Optional, QueryList, SkipSelf } from '@angular/core';
+import { ControlContainer, ControlValueAccessor, FormControl,  NgControl } from '@angular/forms';
 import { StdErrorDirective } from '../../directives/std-error/std-error.directive';
 import { StdFormComponent } from '../std-form/std-form.component';
 
@@ -8,17 +8,8 @@ import { StdFormComponent } from '../std-form/std-form.component';
   selector: 'std-input',
   templateUrl: './std-input.component.html',
   styleUrls: ['./std-input.component.css'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => StdInputComponent),
-      multi: true,
-    },
-  ],
 })
 export class StdInputComponent implements AfterViewInit, ControlValueAccessor {
-
-  @Input('formControl') outerFormControl: FormControl;
 
   @Input() label: string;
 
@@ -31,13 +22,9 @@ export class StdInputComponent implements AfterViewInit, ControlValueAccessor {
   onChange: (value: any) => void;
   onTouch: () => void;
 
-  constructor(
-    private stdForm: StdFormComponent,
-    @Optional() @Host() @SkipSelf() private controlContainer: ControlContainer
-  ) {
+  constructor(private ngControl: NgControl, private stdForm: StdFormComponent) {
+    this.ngControl.valueAccessor = this;
     this.formControl = new FormControl();
-
-    console.log('controlContainer:', this.controlContainer);
   }
 
   ngAfterViewInit(): void {
@@ -75,11 +62,15 @@ export class StdInputComponent implements AfterViewInit, ControlValueAccessor {
   }
 
   get invalid(): boolean {
-    return this.outerFormControl.touched && this.outerFormControl.invalid;
+    return this.ngControl.touched && this.ngControl.invalid;
   }
 
   get pending(): boolean {
-    return this.outerFormControl.touched && this.outerFormControl.status === 'PENDING';
+    return this.ngControl.touched && this.ngControl.status === 'PENDING';
+  }
+
+  get outerFormControl(): FormControl {
+    return this.ngControl.control as FormControl;
   }
 
 }

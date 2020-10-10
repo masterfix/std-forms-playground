@@ -20,7 +20,7 @@
   </ng-container>
 </ng-template>
 
-<div *ngIf="formControl && formControl.touched && errors">
+<div *ngIf="formControl && formControl.touched && formControl.errors">
   <ul *ngFor="let error of getErrorsArray()">
      <li>
         <ng-container *ngTemplateOutlet="getCustomErrorTemplateRef(error.key) ? getCustomErrorTemplateRef(error.key) : defaultError; context: { key: error.key, data: error.data }"></ng-container>

@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component } from '@angular/core';
+import { AbstractControl, NgControl } from '@angular/forms';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -9,6 +9,10 @@ import { FormControl } from '@angular/forms';
 })
 export class StdDebugFormControlComponent {
 
-  @Input('outerFormControl') formControl: FormControl;
+  constructor(private ngControl: NgControl) {}
+
+  get formControl(): AbstractControl {
+    return this.ngControl.control;
+  }
 
 }

@@ -1,12 +1,14 @@
-<std-label *ngIf="label" [outerFormControl]="outerFormControl">{{ label }}</std-label>
+<std-label>
+  {{ label }}
+</std-label>
 
 <form [formGroup]="formGroup">
   <ng-container *ngFor="let radioButton of radioButtons; let i = index">
     <div class="value-wrapper">
       <input
+        formControlName="radio"
         type="radio"
         [id]="'value_' + i"
-        formControlName="radio"
         [value]="radioButton.value"
         (blur)="onBlur()">
       <label [for]="'value_' + i">
@@ -17,12 +19,10 @@
 </form>
 
 <std-error
-  [outerFormControl]="outerFormControl"
   [stdErrors]="stdErrors"
 ></std-error>
 
 <std-debug-form-control
-  *ngIf="debug"
-  [outerFormControl]="outerFormControl">
+  *ngIf="debug">
 </std-debug-form-control>
 

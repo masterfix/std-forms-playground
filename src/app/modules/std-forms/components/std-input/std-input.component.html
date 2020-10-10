@@ -1,4 +1,6 @@
-<std-label *ngIf="label" [outerFormControl]="outerFormControl">{{ label }}</std-label>
+<std-label>
+  {{ label }}
+</std-label>
 
 <input
   type="text"
@@ -9,11 +11,9 @@
 />
 
 <std-error
-  [outerFormControl]="outerFormControl"
   [stdErrors]="stdErrors"
 ></std-error>
 
 <std-debug-form-control
-  *ngIf="mergedDebug"
-  [outerFormControl]="outerFormControl">
+  *ngIf="mergedDebug">
 </std-debug-form-control>
