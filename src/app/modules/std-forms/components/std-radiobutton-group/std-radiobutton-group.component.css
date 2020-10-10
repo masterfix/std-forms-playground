@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+  flex-flow: column nowrap;
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+
+.value-wrapper {
+  padding: 5px;
+}
+
+.value-wrapper label {
+  padding-left: 5px;
+}

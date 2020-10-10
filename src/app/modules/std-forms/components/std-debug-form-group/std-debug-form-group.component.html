@@ -1,0 +1,15 @@
+<div class="json">
+  <div>
+    values:<pre>{{ formGroup.value | json }}</pre>
+  </div>
+  <div>
+    errors:<pre>{{ errors | json }}</pre>
+  </div>
+</div>
+<hr class="divider" />
+<div class="stats">
+  <span>valid: {{ formGroup.valid }}</span>
+  <span>touched: {{ formGroup.touched }}</span>
+  <span>pristine: {{ formGroup.pristine }}</span>
+  <span>status: {{ formGroup.status }}</span>
+</div>

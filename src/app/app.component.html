@@ -1,0 +1,35 @@
+<std-form [formGroup]="form" [debug]="true">
+	<std-input
+    [formControl]="firstName"
+    label="First name">
+    <ng-template
+      std-error="required"
+      let-data="error">
+      Custom required error message
+    </ng-template>
+  </std-input>
+	<std-input
+    [formControl]="lastName"
+    label="Last name">
+  </std-input>
+  <std-radiobutton-group
+    [formControl]="gender"
+    label="Gender">
+    <ng-template std-radiobutton="male">Male</ng-template>
+    <ng-template std-radiobutton="female">Female</ng-template>
+    <ng-template std-radiobutton="other">Other</ng-template>
+  </std-radiobutton-group>
+	<std-input
+    [formControl]="email"
+    label="Email">
+    <ng-template
+      std-error="uniqueEmail"
+      let-data="data">
+      Email address '{{ data }}' already in use!
+    </ng-template>
+  </std-input>
+  <button
+    (click)="onSave()">
+    Save
+  </button>
+</std-form>

@@ -1,0 +1,19 @@
+<std-label *ngIf="label" [outerFormControl]="outerFormControl">{{ label }}</std-label>
+
+<input
+  type="text"
+  [formControl]="formControl"
+  (blur)="onBlur()"
+  [class.pending]="pending"
+  [class.invalid]="invalid"
+/>
+
+<std-error
+  [outerFormControl]="outerFormControl"
+  [stdErrors]="stdErrors"
+></std-error>
+
+<std-debug-form-control
+  *ngIf="mergedDebug"
+  [outerFormControl]="outerFormControl">
+</std-debug-form-control>

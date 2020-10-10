@@ -1,0 +1,28 @@
+<std-label *ngIf="label" [outerFormControl]="outerFormControl">{{ label }}</std-label>
+
+<form [formGroup]="formGroup">
+  <ng-container *ngFor="let radioButton of radioButtons; let i = index">
+    <div class="value-wrapper">
+      <input
+        type="radio"
+        [id]="'value_' + i"
+        formControlName="radio"
+        [value]="radioButton.value"
+        (blur)="onBlur()">
+      <label [for]="'value_' + i">
+        <ng-container *ngTemplateOutlet="radioButton.templateRef"></ng-container>
+      </label>
+    </div>
+  </ng-container>
+</form>
+
+<std-error
+  [outerFormControl]="outerFormControl"
+  [stdErrors]="stdErrors"
+></std-error>
+
+<std-debug-form-control
+  *ngIf="debug"
+  [outerFormControl]="outerFormControl">
+</std-debug-form-control>
+

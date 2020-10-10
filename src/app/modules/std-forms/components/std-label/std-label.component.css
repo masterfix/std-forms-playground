@@ -1,0 +1,9 @@
+:host {
+  padding: 5px;
+  padding-top: 0;
+}
+
+label {
+  font-weight: 500;
+  text-transform: uppercase;
+}
