@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AppValidators } from './app-validators';
+import { SaveEvent } from './modules/std-forms/components/std-save-button/std-save-button.component';
 
 @Component({
   selector: 'my-app',
@@ -23,8 +24,8 @@ export class AppComponent {
         {
           validators: [
             Validators.required,
-            Validators.minLength(5),
-            Validators.maxLength(0),
+            Validators.minLength(3),
+            //Validators.maxLength(0),
           ],
         }
       ),
@@ -51,15 +52,18 @@ export class AppComponent {
           ]
         }
       ),
-    }, {updateOn: "blur"});
+    }, {updateOn: "change"});
+    this.form.valueChanges.subscribe(change => {
+      console.log('form value change:', change);
+    });
     this.form.statusChanges.subscribe(change => {
-      //console.log('form status change:', change);
+      console.log('form status change:', change);
     });
   }
 
-  onSave(): void {
-    console.log('save clicked');
-    this.form.markAllAsTouched();
+  onSave(event: SaveEvent): void {
+    console.log('got save event:', event);
+    //this.form.markAllAsTouched();
   }
 
   get firstName(): FormControl {

@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, ContentChildren, Host, Input, Optional, QueryList, SkipSelf } from '@angular/core';
-import { ControlContainer, ControlValueAccessor, FormControl,  NgControl } from '@angular/forms';
+import { AfterViewInit, Component, ContentChildren, Input, QueryList } from '@angular/core';
+import { ControlValueAccessor, FormControl,  NgControl } from '@angular/forms';
 import { StdErrorDirective } from '../../directives/std-error/std-error.directive';
 import { StdFormComponent } from '../std-form/std-form.component';
 
@@ -29,6 +29,7 @@ export class StdInputComponent implements AfterViewInit, ControlValueAccessor {
 
   ngAfterViewInit(): void {
     this.formControl.valueChanges.subscribe(value => {
+      this.onTouch();
       this.onChange(value);
     });
   }

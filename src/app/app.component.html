@@ -1,6 +1,6 @@
 <std-form
   [formGroup]="form"
-  [debug]="true">
+  [debug]="false">
 	<std-input
     [formControl]="firstName"
     label="First name">
@@ -39,8 +39,17 @@
       Email address '{{ data }}' already in use!
     </ng-template>
   </std-input>
-  <button
-    (click)="onSave()">
-    Save
-  </button>
+  <std-action-bar>
+    <std-save-button
+      (save)="onSave($event)"
+    >
+      Save
+    </std-save-button>
+     <std-action-button>
+      Cancel
+    </std-action-button>
+         <std-action-button>
+      Reset
+    </std-action-button>
+  </std-action-bar>
 </std-form>

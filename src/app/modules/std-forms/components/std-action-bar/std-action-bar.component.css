@@ -1,0 +1,7 @@
+:host {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+  /*background-color: gray;*/
+}
