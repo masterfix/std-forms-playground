@@ -20,7 +20,7 @@ export class AppComponent {
   constructor() {
     this.form = new FormGroup({
       [AppComponent.firstNameField]: new FormControl(
-        null,
+        'John',
         {
           validators: [
             Validators.required,
@@ -33,7 +33,7 @@ export class AppComponent {
         'Doe',
       ),
       [AppComponent.genderField]: new FormControl(
-        null,
+        'male',
         {
           validators: [
             Validators.required,

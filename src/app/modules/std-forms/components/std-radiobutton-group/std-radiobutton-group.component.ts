@@ -1,28 +1,20 @@
-import { AfterContentInit, AfterViewInit, Component, ContentChildren,  forwardRef, Injector,  Input, OnInit, QueryList } from '@angular/core';
-import { AbstractControl, ControlValueAccessor, FormControl, FormGroup, NgControl,  NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AfterContentInit, AfterViewInit, Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
+import { ControlValueAccessor, FormControl, FormGroup, NgControl } from '@angular/forms';
 import { StdErrorDirective } from '../../directives/std-error/std-error.directive';
 import { StdRadiobuttonDirective } from '../../directives/std-radiobutton/std-radiobutton.directive';
+import { StdFormComponent } from '../std-form/std-form.component';
 
 @Component({
   // tslint:disable-next-line: component-selector
   selector: 'std-radiobutton-group',
   templateUrl: './std-radiobutton-group.component.html',
   styleUrls: ['./std-radiobutton-group.component.css'],
-    providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => StdRadiobuttonGroupComponent),
-      multi: true,
-    },
-  ],
 })
 export class StdRadiobuttonGroupComponent implements AfterViewInit, AfterContentInit, ControlValueAccessor {
 
-  @Input('formControl') outerFormControl: FormControl;
-
   @Input() label: string;
 
-  @Input() debug = false;
+  @Input() debug: boolean;
 
   @ContentChildren(StdErrorDirective) stdErrors: QueryList<StdErrorDirective>;
 
@@ -36,11 +28,21 @@ export class StdRadiobuttonGroupComponent implements AfterViewInit, AfterContent
 
   public isRequired = false;
 
-  constructor() {
+  constructor(private ngControl: NgControl, private stdForm: StdFormComponent) {
+    this.ngControl.valueAccessor = this;
     this.radioControl = new FormControl();
     this.formGroup = new FormGroup({
       radio: this.radioControl,
     });
+  }
+
+  @HostBinding('class.invalid')
+  get invalid(): boolean {
+    return this.ngControl.touched && this.ngControl.invalid;
+  }
+
+  get mergedDebug(): boolean {
+    return this.debug !== undefined ? !!this.debug : !!this.stdForm.debug;
   }
 
   ngAfterViewInit(): void {

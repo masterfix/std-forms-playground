@@ -1,14 +1,25 @@
 :host {
   display: flex;
   flex-flow: column nowrap;
-  padding-top: 5px;
-  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+:host.invalid {
+  background-color: rgb(255, 183, 183);
 }
 
 .value-wrapper {
-  padding: 5px;
+  display: block;
+  padding-left: 5px;
+  margin-bottom: 5px;
+}
+
+.value-wrapper input {
+  height: 23px;
+  vertical-align: middle;
 }
 
 .value-wrapper label {
-  padding-left: 5px;
+  vertical-align: middle;
+  font-size: larger;
 }

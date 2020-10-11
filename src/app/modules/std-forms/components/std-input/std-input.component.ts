@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ContentChildren, Input, QueryList } from '@angular/core';
+import { AfterViewInit, Component, ContentChildren, HostBinding,  Input, QueryList } from '@angular/core';
 import { ControlValueAccessor, FormControl,  NgControl } from '@angular/forms';
 import { StdErrorDirective } from '../../directives/std-error/std-error.directive';
 import { StdFormComponent } from '../std-form/std-form.component';
@@ -62,6 +62,7 @@ export class StdInputComponent implements AfterViewInit, ControlValueAccessor {
     }
   }
 
+  @HostBinding('class.invalid')
   get invalid(): boolean {
     return this.ngControl.touched && this.ngControl.invalid;
   }

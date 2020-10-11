@@ -21,7 +21,6 @@ export class StdSaveButtonComponent {
   onAction() {
     console.log('emit save event');
     this.formControl.markAllAsTouched();
-    /this.formControl.updateValueAndValidity();
     this.save.emit({ formValid: this.formControl.valid, formValue: this.formControl.value });
   }
 

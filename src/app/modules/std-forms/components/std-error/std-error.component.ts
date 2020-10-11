@@ -1,4 +1,4 @@
-import { Component, Input, QueryList, TemplateRef } from "@angular/core";
+import { Component, HostBinding,  Input, QueryList, TemplateRef } from "@angular/core";
 import { AbstractControl, NgControl } from "@angular/forms";
 import { StdErrorDirective } from "../../directives/std-error/std-error.directive";
 
@@ -16,6 +16,11 @@ export class StdErrorComponent {
 
   get formControl(): AbstractControl {
     return this.ngControl.control;
+  }
+
+  @HostBinding('class.invisible')
+  get invisible(): boolean {
+    return !(this.ngControl.control.touched && !!this.ngControl.control.errors);
   }
 
   getErrorsArray(): Array<{ key: string; data: any }> {
