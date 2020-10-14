@@ -27,8 +27,8 @@ export class AppComponent {
             //AppValidators.startsWithCapitalLetter
           ]
         }),
-        [AppComponent.lastNameField]: new FormControl("Doe", {
-          //validators: [AppValidators.startsWithCapitalLetter]
+        [AppComponent.lastNameField]: new FormControl("doe", {
+          validators: [AppValidators.startsWithCapitalLetter]
         }),
         [AppComponent.genderField]: new FormControl("male", {
           validators: [Validators.required]

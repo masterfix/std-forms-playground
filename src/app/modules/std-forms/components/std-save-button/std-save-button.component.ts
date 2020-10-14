@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from "@angular/core";
 import { AbstractControl, ControlContainer } from "@angular/forms";
+import { StdFormComponent } from "../std-form/std-form.component";
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -11,7 +12,10 @@ export class StdSaveButtonComponent {
   @Output() action = new EventEmitter();
   @Output() save = new EventEmitter<SaveEvent>();
 
-  constructor(private controlContainer: ControlContainer) {}
+  constructor(
+    private controlContainer: ControlContainer,
+    private stdForm: StdFormComponent
+  ) {}
 
   get formControl(): AbstractControl {
     return this.controlContainer.control;
@@ -20,6 +24,7 @@ export class StdSaveButtonComponent {
   onAction() {
     this.action.emit();
     this.formControl.markAllAsTouched();
+    this.stdForm.scrollToFirstInvalidControl();
     this.save.emit({
       formValid: this.formControl.valid,
       formValue: this.formControl.value

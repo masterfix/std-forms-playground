@@ -1,4 +1,4 @@
-<std-form [formGroup]="form" [debug]="true">
+<std-form [formGroup]="form" [debug]="false">
 	<std-input [formControl]="firstName" label="First name">
 		<ng-template std-error="required">
 			Custom required error message
@@ -7,7 +7,27 @@
 			First character must be a capital letter (control)
 		</ng-template>
 	</std-input>
-	<std-input [formControl]="lastName" label="Last name" required>
+	<std-input [formControl]="firstName" label="Last name">
+	</std-input>
+	<std-input [formControl]="firstName" label="Last name 2">
+	</std-input>
+	<std-input [formControl]="lastName" label="Last name 3">
+	</std-input>
+	<std-input [formControl]="firstName" label="Last name 4">
+	</std-input>
+	<std-input [formControl]="firstName" label="Last name 5">
+	</std-input>
+	<std-input [formControl]="firstName" label="Last name 6">
+	</std-input>
+	<std-input [formControl]="firstName" label="Last name 7">
+	</std-input>
+	<std-input [formControl]="firstName" label="Last name 8">
+	</std-input>
+	<std-input [formControl]="firstName" label="Last name 9">
+	</std-input>
+	<std-input [formControl]="firstName" label="Last name 10">
+	</std-input>
+	<std-input [formControl]="firstName" label="Last name 11">
 	</std-input>
 	<std-radiobutton-group [formControl]="gender" label="Gender">
 		<ng-template std-radiobutton="male">
