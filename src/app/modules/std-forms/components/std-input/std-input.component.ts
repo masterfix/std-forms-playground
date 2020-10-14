@@ -35,7 +35,6 @@ export class StdInputComponent implements AfterViewInit, ControlValueAccessor {
 
   ngAfterViewInit(): void {
     this.formControl.valueChanges.subscribe(value => {
-      this.onTouch();
       this.onChange(value);
     });
   }

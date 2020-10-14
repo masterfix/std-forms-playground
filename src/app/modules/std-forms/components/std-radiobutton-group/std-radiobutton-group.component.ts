@@ -61,10 +61,9 @@ export class StdRadiobuttonGroupComponent
   }
 
   ngAfterViewInit(): void {
-    //console.log('afterViewInit');
     this.radioControl.valueChanges.subscribe(value => {
       this.onChange(value);
-      //this.onTouch(); // TODO think about this
+      this.onTouch();
     });
   }
 
@@ -76,26 +75,27 @@ export class StdRadiobuttonGroupComponent
     }
   }
 
-  onBlur(): void {
+  onInputBlur(): void {
     this.onTouch();
   }
 
   writeValue(value: any): void {
-    //console.log('writeValue:', value);
     this.radioControl.setValue(value);
   }
 
   registerOnChange(fn: any): void {
-    //console.log('registerOnChange');
     this.onChange = fn;
   }
 
   registerOnTouched(fn: any): void {
-    //console.log('registerOnTouched');
     this.onTouch = fn;
   }
 
   setDisabledState?(isDisabled: boolean): void {
-    throw new Error("Method not implemented.");
+    if (isDisabled) {
+      this.radioControl.disable();
+    } else {
+      this.radioControl.enable();
+    }
   }
 }

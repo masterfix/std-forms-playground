@@ -10,7 +10,7 @@
         type="radio"
         [id]="'value_' + i"
         [value]="radioButton.value"
-        (blur)="onBlur()">
+        (blur)="onInputBlur()">
 			<label [for]="'value_' + i">
         <ng-container *ngTemplateOutlet="radioButton.templateRef"></ng-container>
       </label>
