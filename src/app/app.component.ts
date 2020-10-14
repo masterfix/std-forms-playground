@@ -20,15 +20,15 @@ export class AppComponent {
   constructor() {
     this.form = new FormGroup(
       {
-        [AppComponent.firstNameField]: new FormControl("John", {
+        [AppComponent.firstNameField]: new FormControl("Jo", {
           validators: [
             Validators.required,
-            Validators.minLength(3),
-            AppValidators.startsWithCapitalLetter
+            Validators.minLength(3)
+            //AppValidators.startsWithCapitalLetter
           ]
         }),
         [AppComponent.lastNameField]: new FormControl("Doe", {
-          validators: [AppValidators.startsWithCapitalLetter]
+          //validators: [AppValidators.startsWithCapitalLetter]
         }),
         [AppComponent.genderField]: new FormControl("male", {
           validators: [Validators.required]

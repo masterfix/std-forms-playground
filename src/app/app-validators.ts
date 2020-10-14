@@ -13,29 +13,30 @@ export class AppValidators {
     AppValidators.http = http;
   }
 
-  public static uniqueEmail = (
+  public static uniqueEmail(
     control: FormControl
-  ): Observable<ValidationErrors | null> => {
+  ): Observable<null | ValidationErrors> {
+    //console.log("uniqueEmail init");
     return of(control.value as string).pipe(
-      tap(email => console.log("uniqueEmail started, email:", email)),
-      delay(1 * 1000),
+      //tap(email => console.log("uniqueEmail started, email:", email)),
+      delay(1500),
       map(email => {
         if (email === "padx@gmx.net") {
           return { uniqueEmail: email };
         }
         return null;
-      }),
-      tap(result => console.log("uniqueEmail ended, result:", result))
+      })
+      //tap(result => console.log("uniqueEmail ended, result:", result))
     );
-  };
+  }
 
-  public static startsWithCapitalLetter = (
+  public static startsWithCapitalLetter(
     control: FormControl
-  ): ValidationErrors | null => {
+  ): null | ValidationErrors {
     console.log("startsWithCapitalLetter value:", control.value);
     const value = String(control.value);
     return value.charAt(0) === value.charAt(0).toUpperCase()
       ? null
       : { startsWithCapitalLetter: true };
-  };
+  }
 }
