@@ -1,4 +1,5 @@
-import { Component, Input } from "@angular/core";
+import { Component, ContentChildren, Input, QueryList } from "@angular/core";
+import { StdErrorDirective } from "../../directives/std-error/std-error.directive";
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -7,7 +8,7 @@ import { Component, Input } from "@angular/core";
   styleUrls: ["./std-form.component.css"]
 })
 export class StdFormComponent {
-  
   @Input() debug = false;
 
+  @ContentChildren(StdErrorDirective) stdErrors: QueryList<StdErrorDirective>;
 }

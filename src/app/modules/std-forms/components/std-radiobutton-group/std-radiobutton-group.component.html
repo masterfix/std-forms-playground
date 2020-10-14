@@ -1,28 +1,24 @@
 <std-label>
-  {{ label }}
+	{{ label }}
 </std-label>
 
 <form [formGroup]="formGroup">
-  <ng-container *ngFor="let radioButton of radioButtons; let i = index">
-    <div class="value-wrapper">
-      <input
+	<ng-container *ngFor="let radioButton of radioButtons; let i = index">
+		<div class="value-wrapper">
+			<input
         formControlName="radio"
         type="radio"
         [id]="'value_' + i"
         [value]="radioButton.value"
         (blur)="onBlur()">
-      <label [for]="'value_' + i">
+			<label [for]="'value_' + i">
         <ng-container *ngTemplateOutlet="radioButton.templateRef"></ng-container>
       </label>
-    </div>
-  </ng-container>
+		</div>
+	</ng-container>
 </form>
 
-<std-error
-  [stdErrors]="stdErrors"
-></std-error>
+<std-error [stdErrors]="stdErrors"></std-error>
 
-<std-debug-form-control
-  *ngIf="mergedDebug">
+<std-debug-form-control *ngIf="mergedDebug">
 </std-debug-form-control>
-

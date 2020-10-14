@@ -1,16 +1,22 @@
-import { AfterViewInit, Component, ContentChildren, HostBinding,  Input, QueryList } from '@angular/core';
-import { ControlValueAccessor, FormControl,  NgControl } from '@angular/forms';
-import { StdErrorDirective } from '../../directives/std-error/std-error.directive';
-import { StdFormComponent } from '../std-form/std-form.component';
+import {
+  AfterViewInit,
+  Component,
+  ContentChildren,
+  HostBinding,
+  Input,
+  QueryList
+} from "@angular/core";
+import { ControlValueAccessor, FormControl, NgControl } from "@angular/forms";
+import { StdErrorDirective } from "../../directives/std-error/std-error.directive";
+import { StdFormComponent } from "../std-form/std-form.component";
 
 @Component({
   // tslint:disable-next-line: component-selector
-  selector: 'std-input',
-  templateUrl: './std-input.component.html',
-  styleUrls: ['./std-input.component.css'],
+  selector: "std-input",
+  templateUrl: "./std-input.component.html",
+  styleUrls: ["./std-input.component.css"]
 })
 export class StdInputComponent implements AfterViewInit, ControlValueAccessor {
-
   @Input() label: string;
 
   @Input() debug: boolean;
@@ -62,18 +68,12 @@ export class StdInputComponent implements AfterViewInit, ControlValueAccessor {
     }
   }
 
-  @HostBinding('class.invalid')
+  @HostBinding("class.invalid")
   get invalid(): boolean {
     return this.ngControl.touched && this.ngControl.invalid;
   }
 
   get pending(): boolean {
-    return this.ngControl.touched && this.ngControl.status === 'PENDING';
+    return this.ngControl.touched && this.ngControl.status === "PENDING";
   }
-
-  get outerFormControl(): FormControl {
-    return this.ngControl.control as FormControl;
-  }
-
 }
-

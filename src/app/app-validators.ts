@@ -1,15 +1,11 @@
 import { Injectable } from "@angular/core";
-import {
-  FormControl,
-  ValidationErrors
-} from "@angular/forms";
+import { FormControl, ValidationErrors } from "@angular/forms";
 import { Observable, of } from "rxjs";
 import { delay, map, tap } from "rxjs/operators";
-import { HttpClient } from '@angular/common/http';
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({ providedIn: "root" })
 export class AppValidators {
-
   // example of external service
   private static http: HttpClient;
 
@@ -17,20 +13,29 @@ export class AppValidators {
     AppValidators.http = http;
   }
 
-  public static uniqueEmail = (control: FormControl): Observable<ValidationErrors | null> => {
-
+  public static uniqueEmail = (
+    control: FormControl
+  ): Observable<ValidationErrors | null> => {
     return of(control.value as string).pipe(
-        tap(email => console.log("uniqueEmail started, email:", email)),
-        delay(1 * 1000),
-        map(email => {
-          if (email === "padx@gmx.net") {
-            return { uniqueEmail: email };
-          }
-          return null;
-        }),
-        tap(result => console.log("uniqueEmail ended, result:", result))
-      );
+      tap(email => console.log("uniqueEmail started, email:", email)),
+      delay(1 * 1000),
+      map(email => {
+        if (email === "padx@gmx.net") {
+          return { uniqueEmail: email };
+        }
+        return null;
+      }),
+      tap(result => console.log("uniqueEmail ended, result:", result))
+    );
+  };
 
-  }
-
+  public static startsWithCapitalLetter = (
+    control: FormControl
+  ): ValidationErrors | null => {
+    console.log("startsWithCapitalLetter value:", control.value);
+    const value = String(control.value);
+    return value.charAt(0) === value.charAt(0).toUpperCase()
+      ? null
+      : { startsWithCapitalLetter: true };
+  };
 }

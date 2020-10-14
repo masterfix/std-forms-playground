@@ -1,69 +1,63 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AppValidators } from './app-validators';
-import { SaveEvent } from './modules/std-forms/components/std-save-button/std-save-button.component';
+import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { AppValidators } from "./app-validators";
+import { SaveEvent } from "./modules/std-forms/components/std-save-button/std-save-button.component";
 
 @Component({
-  selector: 'my-app',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "my-app",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class AppComponent {
-
-  public static firstNameField = 'firstName';
-  public static lastNameField = 'lastName';
-  public static emailField = 'email';
-  public static genderField = 'gender';
+  public static firstNameField = "firstName";
+  public static lastNameField = "lastName";
+  public static emailField = "email";
+  public static genderField = "gender";
 
   public form: FormGroup;
 
   constructor() {
-    this.form = new FormGroup({
-      [AppComponent.firstNameField]: new FormControl(
-        'John',
-        {
+    this.form = new FormGroup(
+      {
+        [AppComponent.firstNameField]: new FormControl("John", {
           validators: [
             Validators.required,
             Validators.minLength(3),
-            //Validators.maxLength(0),
-          ],
-        }
-      ),
-      [AppComponent.lastNameField]: new FormControl(
-        'Doe',
-      ),
-      [AppComponent.genderField]: new FormControl(
-        'male',
-        {
-          validators: [
-            Validators.required,
+            AppValidators.startsWithCapitalLetter
           ]
-        }
-      ),
-      [AppComponent.emailField]: new FormControl(
-        'john@doe.com',
-        {
-          validators: [
-            Validators.required,
-            Validators.email,
-          ],
-          asyncValidators: [
-            AppValidators.uniqueEmail
-          ]
-        }
-      ),
-    }, {updateOn: "change"});
+        }),
+        [AppComponent.lastNameField]: new FormControl("Doe", {
+          validators: [AppValidators.startsWithCapitalLetter]
+        }),
+        [AppComponent.genderField]: new FormControl("male", {
+          validators: [Validators.required]
+        }),
+        [AppComponent.emailField]: new FormControl("john@doe.com", {
+          validators: [Validators.required, Validators.email],
+          asyncValidators: [AppValidators.uniqueEmail]
+        })
+      },
+      { updateOn: "blur" }
+    );
     this.form.valueChanges.subscribe(change => {
-      console.log('form value change:', change);
+      console.log("form value change:", change);
     });
     this.form.statusChanges.subscribe(change => {
-      console.log('form status change:', change);
+      console.log("form status change:", change);
     });
   }
 
+  onSaveAction(): void {
+    console.log("save clicked");
+  }
+
   onSave(event: SaveEvent): void {
-    console.log('got save event:', event);
-    //this.form.markAllAsTouched();
+    console.log("received save event:", event);
+  }
+
+  onCancelAction(): void {
+    console.log("cancel clicked");
   }
 
   get firstName(): FormControl {
@@ -81,5 +75,4 @@ export class AppComponent {
   get gender(): FormControl {
     return this.form.get(AppComponent.genderField) as FormControl;
   }
-
 }
